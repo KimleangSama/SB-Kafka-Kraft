@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "DemoProducedEvent",
+  "namespace": "com.keakimleang.demokafka.event",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "message",
+      "type": "string"
+    }
+  ]
+}

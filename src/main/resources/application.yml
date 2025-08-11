@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: demo-kafka
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema.registry.url: ${SPRING_KAFKA_SCHEMA_REGISTRY_URL:http://localhost:8085}
+    consumer:
+      group-id: my-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      properties:
+        schema.registry.url: ${SPRING_KAFKA_SCHEMA_REGISTRY_URL:http://localhost:8085}
+        specific.avro.reader: true
+
+
+management:
+  metrics:
+    distribution:
+      percentiles-histogram:
+        all: true
+      percentiles:
+        all: 0.5, 0.75, 0.95, 0.99
+  observations:
+    key-values.application: demo-kafka
+  tracing:
+    sampling:
+      probability: 1.0
