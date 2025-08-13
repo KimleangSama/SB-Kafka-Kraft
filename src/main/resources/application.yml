@@ -1,3 +1,4 @@
+server.port: ${SERVER_PORT:8080}
 spring:
   application:
     name: demo-kafka
@@ -16,7 +17,6 @@ spring:
       properties:
         schema.registry.url: ${SPRING_KAFKA_SCHEMA_REGISTRY_URL:http://localhost:8085}
         specific.avro.reader: true
-
 
 management:
   metrics:
